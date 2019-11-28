@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this, Observer {
 
         })
-        
         return root
     }
 }
