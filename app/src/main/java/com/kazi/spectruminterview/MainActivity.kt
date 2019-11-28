@@ -1,8 +1,12 @@
 package com.kazi.spectruminterview
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -14,9 +18,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
+
 class MainActivity : AppCompatActivity() {
 
 
+    private lateinit var searchView: SearchView
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +49,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
+        // Associate searchable configuration with the SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        searchView.setSearchableInfo(
+            searchManager
+                .getSearchableInfo(componentName)
+        )
+        searchView.setMaxWidth(Int.MAX_VALUE)
+        // listening to search query text change
+//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener() {
+//            fun onQueryTextSubmit(query: String?): Boolean { // filter recycler view when query submitted
+//                mAdapter.getFilter().filter(query)
+//                return false
+//            }
+//
+//            fun onQueryTextChange(query: String?): Boolean { // filter recycler view when text is changed
+//                mAdapter.getFilter().filter(query)
+//                return false
+//            }
+//        })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // Handle action bar item clicks here. The action bar will
+// automatically handle clicks on the Home/Up button, so long
+// as you specify a parent activity in AndroidManifest.xml.
+        val id: Int = item.getItemId()
+        return if (id == R.id.action_search) {
+            true
+        } else super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() { // close search view on back button pressed
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true)
+            return
+        }
+        super.onBackPressed()
     }
 
     override fun onSupportNavigateUp(): Boolean {
