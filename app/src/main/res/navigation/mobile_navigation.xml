@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.kazi.spectruminterview.ui.home.HomeFragment"
+        android:name="com.kazi.spectruminterview.ui.home.CompanyFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 

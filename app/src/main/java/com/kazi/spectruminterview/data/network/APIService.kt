@@ -1,7 +1,7 @@
 package com.kazi.test.data.network
 
 import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
-import com.kazi.test.data.db.entities.Employee
+import com.kazi.spectruminterview.data.db.entities.ResDataAPI
 import com.kazi.test.data.network.interceptor.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -35,7 +35,7 @@ public interface APIService {
 
             return Retrofit.Builder()
                 .client(okkHttpclient.build())
-                .baseUrl("http://dummy.restapiexample.com/")
+                .baseUrl("https://next.json-generator.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(APIService::class.java)
@@ -43,9 +43,9 @@ public interface APIService {
     }
 
 
-    @GET("api/v1/employees")
+    @GET("api/json/get/Vk-LhK44U")
     suspend fun getEmployees(
-    ): Response<List<Employee>>
+    ): Response<List<ResDataAPI>>
 
 
 }

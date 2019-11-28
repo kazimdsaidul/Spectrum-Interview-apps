@@ -1,6 +1,7 @@
 package  com.kazi.test.data.db
 
 import androidx.room.*
+import com.kazi.spectruminterview.data.db.entities.ResDataAPI
 import com.kazi.test.data.db.entities.Employee
 
 /**
@@ -10,7 +11,7 @@ import com.kazi.test.data.db.entities.Employee
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: List<Employee>): List<Long>
+    suspend fun insert(user: List<ResDataAPI>): List<Long>
 
     @Query("SELECT * from Employee")
     suspend fun getAllEmployee(): List<Employee>
