@@ -5,15 +5,16 @@ import com.bumptech.glide.request.RequestOptions
 import com.kazi.spectruminterview.R
 import com.kazi.spectruminterview.databinding.ItemEmployeeBinding
 import com.kazi.test.data.db.entities.Employee
+import com.xwray.groupie.databinding.BindableItem
 
 /**
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-07.
  */
 class EmployeeItem(val employee: Employee) : BindableItem<ItemEmployeeBinding>() {
 
-    fun getLayout() = R.layout.item_employee
+    override fun getLayout() = R.layout.item_employee
 
-    fun bind(viewBinding: ItemEmployeeBinding, position: Int) {
+    override fun bind(viewBinding: ItemEmployeeBinding, position: Int) {
         viewBinding.employee = employee
 //        viewBinding.imageView.
 

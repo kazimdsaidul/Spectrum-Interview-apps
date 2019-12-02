@@ -1,7 +1,7 @@
 package com.kazi.test.data.network
 
 import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
-import com.kazi.spectruminterview.data.db.entities.ResDataAPI
+import com.kazi.spectruminterview.data.db.entities.Company
 import com.kazi.test.data.network.interceptor.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,7 +45,7 @@ public interface APIService {
 
     @GET("api/json/get/Vk-LhK44U")
     suspend fun getEmployees(
-    ): Response<List<ResDataAPI>>
+    ): Response<List<Company>>
 
 
 }

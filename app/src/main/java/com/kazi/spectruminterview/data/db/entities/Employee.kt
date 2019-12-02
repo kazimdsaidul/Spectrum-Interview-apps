@@ -12,7 +12,6 @@ data class Employee(
 
     @PrimaryKey(autoGenerate = true)
     val uid: Long,
-
     @SerializedName("id")
     var id: String = "",
     @SerializedName("employee_name")
@@ -23,7 +22,6 @@ data class Employee(
     var employeeAge: String = "",
     @SerializedName("profile_image")
     var profileImage: String = "",
-
     var rating: Int = 0
 
 ) : Parcelable {

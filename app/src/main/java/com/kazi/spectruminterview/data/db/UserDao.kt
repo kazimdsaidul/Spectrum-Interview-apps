@@ -1,8 +1,7 @@
 package  com.kazi.test.data.db
 
 import androidx.room.*
-import com.kazi.spectruminterview.data.db.entities.ResDataAPI
-import com.kazi.test.data.db.entities.Employee
+import com.kazi.spectruminterview.data.db.entities.Company
 
 /**
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-03.
@@ -11,13 +10,13 @@ import com.kazi.test.data.db.entities.Employee
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: List<ResDataAPI>): List<Long>
+    suspend fun insert(user: List<Company>): List<Long>
 
-    @Query("SELECT * from Employee")
-    suspend fun getAllEmployee(): List<Employee>
+    @Query("SELECT * from Company")
+    suspend fun getAllEmployee(): List<Company>
 
     @Update
-    suspend fun update(employee: Employee): Int
+    suspend fun update(employee: Company): Int
 
 
 }

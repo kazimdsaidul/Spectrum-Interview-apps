@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.kazi.spectruminterview.data.db.entities.Company
 import com.kazi.test.data.db.entities.Employee
 import com.kazi.test.data.repository.UserRepository
 import com.kazi.test.ui.employeesList.view.IVIewEmployerList
@@ -14,8 +15,8 @@ import com.kazi.test.utils.exception.NoInternetException
 class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
 
 
-    var listOfEmployees: MutableLiveData<List<Employee>> = MutableLiveData()
-    var mEmployee: MutableLiveData<Employee> = MutableLiveData()
+    var listOfEmployees: MutableLiveData<List<Company>> = MutableLiveData()
+    var mEmployee: MutableLiveData<Company> = MutableLiveData()
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
@@ -31,11 +32,16 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
             try {
                 val employeesLocal = repository.getEmployeesLocal()
                 if (employeesLocal.size != 0) {
-                    listOfEmployees.value = employeesLocal
+//                    listOfEmployees.value = employeesLocal
+                    val employees = repository.getEmployeesAPI()
+                    repository.saveAllEmployee(employees)
+                    listOfEmployees.value = employees
+
+
                 } else {
                     val employees = repository.getEmployeesAPI()
-                    // repository.saveAllEmployee(employees)
-                    // listOfEmployees.value = employees
+                    repository.saveAllEmployee(employees)
+                    listOfEmployees.value = employees
                 }
             } catch (e: ApiException) {
                 view?.onFailure(e.message)
@@ -55,7 +61,7 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
 
                 val value = mEmployee.value as Employee
                 value.rating = rating
-                val update = repository.update(value)
+                //val update = repository.update(value)
                 Log.e("", "");
 
 

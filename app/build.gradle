@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -14,6 +16,16 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -46,7 +58,7 @@ ext {
     firebaseVersion = '16.0.6'
 
     lifecycle_version = "1.1.1"
-    room_version = "2.1.0"
+    room_version = "2.2.2"
 
     okhttpVersion = '4.0.0-alpha02'
     timberVersion = '4.6.0'
@@ -93,7 +105,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
-//    kapt "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -105,5 +117,14 @@ dependencies {
 //    implementation 'com.github.lndmflngs:memorizing-pager:2.0.1'
 
     implementation 'org.apache.commons:commons-lang3:3.8.1'
+
+    implementation 'com.xwray:groupie:2.3.0'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
+    implementation 'com.xwray:groupie-databinding:2.3.0'
+
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+
 
 }

@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.kazi.test.data.db.entities.Employee
+import com.kazi.spectruminterview.data.db.entities.Company
 
 /**
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-03.
  */
 @Database(
-    entities = [Employee::class],
+    entities = [Company::class],
     version = 1,
     exportSchema = true
 )

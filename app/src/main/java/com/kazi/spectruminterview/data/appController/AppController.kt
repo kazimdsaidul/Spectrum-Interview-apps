@@ -9,12 +9,14 @@ import com.kazi.test.data.network.APIService
 import com.kazi.test.data.network.interceptor.HeaderTokenInterceptor
 import com.kazi.test.data.network.interceptor.NetworkConnectionInterceptor
 import com.kazi.test.data.repository.UserRepository
+import com.kazi.test.ui.employeesList.employeesViewModelFactory.EmployeesViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.BuildConfig
 import org.kodein.di.android.x.androidXModule
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
 
@@ -33,7 +35,7 @@ public open class AppController : Application(), KodeinAware {
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { UserRepository(instance(), instance()) }
 
-//        bind() from provider { EmployeesViewModelFactory(instance()) }
+        bind() from provider { EmployeesViewModelFactory(instance()) }
 
         showDebugDBAddressLogToast(applicationContext)
 

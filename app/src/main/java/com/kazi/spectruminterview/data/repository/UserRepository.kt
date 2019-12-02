@@ -1,9 +1,8 @@
 package com.kazi.test.data.repository
 
 
-import com.kazi.spectruminterview.data.db.entities.ResDataAPI
+import com.kazi.spectruminterview.data.db.entities.Company
 import com.kazi.test.data.db.AppDatabase
-import com.kazi.test.data.db.entities.Employee
 import com.kazi.test.data.network.APIService
 import com.kazi.test.data.network.SafeApiRequest
 
@@ -16,18 +15,21 @@ class UserRepository(
 
 ) : SafeApiRequest() {
 
-    suspend fun getEmployeesAPI(): List<ResDataAPI> {
+    suspend fun getEmployeesAPI(): List<Company> {
         return apiRequest { apiService.getEmployees() }
     }
 
-    suspend fun saveAllEmployee(user: List<ResDataAPI>) = db.getUserDao().insert(user)
+    suspend fun saveAllEmployee(user: List<Company>) {
+        db.getUserDao().insert(user)
+
+    }
 
 
-    suspend fun getEmployeesLocal(): List<Employee> {
+    suspend fun getEmployeesLocal(): List<Company> {
         return db.getUserDao().getAllEmployee()
     }
 
-    suspend fun update(employee: Employee): Int {
+    suspend fun update(employee: Company): Int {
         return db.getUserDao().update(employee)
     }
 }
