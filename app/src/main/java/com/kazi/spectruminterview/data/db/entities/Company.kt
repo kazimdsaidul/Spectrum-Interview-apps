@@ -1,15 +1,13 @@
 package com.kazi.spectruminterview.data.db.entities
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.kazi.spectruminterview.ui.home.MemberTypeConverter
 
 
-/**
- * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-12-01.
- */
-@Entity
+@Entity(indices = [Index(value = ["_id"], unique = true)])
 @TypeConverters(MemberTypeConverter::class)
 
 data class Company(
@@ -19,10 +17,6 @@ data class Company(
     val about: String,
     val company: String,
     val logo: String,
-    val members: List<Member>?
-
+    var members: List<Member>,
+    val website: String
 )
-
-
-
-

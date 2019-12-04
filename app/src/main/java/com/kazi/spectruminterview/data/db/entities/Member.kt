@@ -1,17 +1,20 @@
 package com.kazi.spectruminterview.data.db.entities
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-/**
- * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-12-01.
- */
 
-
+@Entity(indices = [Index(value = ["_id"], unique = true)])
 data class Member(
     @PrimaryKey(autoGenerate = true)
-    val Member_id: Int,
+    val id: Int,
+    val _id: String,
+    var companyId: String,
     val age: Int,
-    var companyId: String
+    val email: String,
+    @Embedded
+    val name: Name,
+    val phone: String
 )
-
-

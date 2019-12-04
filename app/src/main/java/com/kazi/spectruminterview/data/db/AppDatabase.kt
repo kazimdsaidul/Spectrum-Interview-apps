@@ -5,12 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kazi.spectruminterview.data.db.entities.Company
+import com.kazi.spectruminterview.data.db.entities.Member
 
 /**
  * Created by Kazi Md. Saidul Email: Kazimdsaidul@gmail.com  Mobile: +8801675349882 on 2019-09-03.
  */
 @Database(
-    entities = [Company::class],
+    entities = [Company::class, Member::class],
     version = 1,
     exportSchema = true
 )

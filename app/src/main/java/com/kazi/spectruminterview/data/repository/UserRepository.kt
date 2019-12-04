@@ -2,6 +2,7 @@ package com.kazi.test.data.repository
 
 
 import com.kazi.spectruminterview.data.db.entities.Company
+import com.kazi.spectruminterview.data.db.entities.Member
 import com.kazi.test.data.db.AppDatabase
 import com.kazi.test.data.network.APIService
 import com.kazi.test.data.network.SafeApiRequest
@@ -19,11 +20,19 @@ class UserRepository(
         return apiRequest { apiService.getEmployees() }
     }
 
-    suspend fun saveAllEmployee(user: List<Company>) {
+    suspend fun saveAPIDataToLocalDB(user: List<Company>) {
+        val memberList = mutableListOf<Member>()
+        user.forEach { c ->
+            run {
+                c.members.forEach {
+                    it.companyId = c._id
+                    memberList.add(it)
+                }
+            }
+        }
+        db.getUserDao().insertMember(memberList)
         db.getUserDao().insert(user)
-
     }
-
 
     suspend fun getEmployeesLocal(): List<Company> {
         return db.getUserDao().getAllEmployee()

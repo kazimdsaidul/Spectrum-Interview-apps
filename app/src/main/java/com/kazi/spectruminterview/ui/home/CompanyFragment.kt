@@ -89,9 +89,10 @@ class CompanyFragment : Fragment(), IVIewEmployerList, KodeinAware {
         }
     }
 
-
     override fun openEmpDetailsActivity(employee: Employee) {
+
     }
+
 
     override fun onFailure(message: String?) {
     }

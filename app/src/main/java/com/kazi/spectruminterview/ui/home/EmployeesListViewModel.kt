@@ -34,13 +34,13 @@ class EmployeesListViewModel(val repository: UserRepository) : ViewModel() {
                 if (employeesLocal.size != 0) {
 //                    listOfEmployees.value = employeesLocal
                     val employees = repository.getEmployeesAPI()
-                    repository.saveAllEmployee(employees)
+                    repository.saveAPIDataToLocalDB(employees)
                     listOfEmployees.value = employees
 
 
                 } else {
                     val employees = repository.getEmployeesAPI()
-                    repository.saveAllEmployee(employees)
+                    repository.saveAPIDataToLocalDB(employees)
                     listOfEmployees.value = employees
                 }
             } catch (e: ApiException) {
